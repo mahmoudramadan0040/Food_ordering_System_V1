@@ -1,12 +1,12 @@
 import express from 'express';
-import routes from './routes';
+import routes from './Routes/index';
 import rateLimit from 'express-rate-limit';
 import morgan from 'morgan';
 import helmet from 'helmet';
-
+import config from './config/config';
 
 const app =express()
-const PORT = configration.port || 3000;
+const PORT = config.port || 3000;
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(morgan('common'));
 app.use(helmet());
 
-
+app.use('/api',routes);
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}`);
 });
