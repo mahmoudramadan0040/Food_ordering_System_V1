@@ -1,10 +1,25 @@
-import  { Sequelize,Model, DataTypes } from 'sequelize';
-import db from '../database/index';
+import  { Model, DataTypes } from 'sequelize';
+import sequelize from '../database/index';
 export default class Order extends Model{
 
 }
 
 Order.init({
-    
-},{db,modelName:"Order"})
-
+    id:{
+        type:DataTypes.INTEGER,
+        autoIncrement:true,
+        primaryKey:true
+    },
+    order_ticket:{
+        type:DataTypes.TEXT,
+        allowNull: false,
+    },
+    time:{
+        type:DataTypes.TIME,
+        allowNull: false
+    },
+    date:{
+        type:DataTypes.DATE,
+        allowNull:false
+    }
+},{sequelize, modelName: 'Order'})
